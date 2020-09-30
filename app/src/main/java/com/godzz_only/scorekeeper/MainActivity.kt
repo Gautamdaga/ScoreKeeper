@@ -14,13 +14,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    private val PRIMARY_CHANNEL_ID:String = "primary_notification_channel"
-    private val NOTIFICATION_ID:Int = 0
-    private val ACTION_UPDATE_NOTIFIACTION:String = "com.godzonly.labnotification.ACTION_UPDATE_NOTIFICATION"
-    private val ACTION_UPDATE_NOTIFIACTION1:String = "com.godzonly.labnotification.ACTION_UPDATE_NOTIFICATION1"
-    //    private val View = android.view.View(this)
-    private val mReceiver:NotificationReceiver = NotificationReceiver()
-    private val mReceiver1:NotificationReceiveruUser = NotificationReceiveruUser()
+
     val STATE_SCORE_1 = "Team 1 Score"
     val STATE_SCORE_2 = "Team 2 Score"
     var mscore1:Int = 0
@@ -29,9 +23,6 @@ class MainActivity : AppCompatActivity() {
         outState.putInt(STATE_SCORE_1,mscore1)
         outState.putInt(STATE_SCORE_2,mscore2)
         super.onSaveInstanceState(outState)
-        setNotificationButtonState(isNotifyEnabled = true, isUpdateEnabled = false, isCancelEnabled = false)
-        registerReceiver(mReceiver, IntentFilter(ACTION_UPDATE_NOTIFIACTION))
-        registerReceiver(mReceiver1, IntentFilter(ACTION_UPDATE_NOTIFIACTION1))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -102,24 +93,5 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    inner class NotificationReceiver : BroadcastReceiver {
 
-        constructor() : super()
-
-        override fun onReceive(p0: Context?, p1: Intent?) {
-            update.performClick()
-//            updateNotifcation()
-        }
-
-    }
-    inner class NotificationReceiveruUser : BroadcastReceiver {
-
-        constructor() : super()
-
-        override fun onReceive(p0: Context?, p1: Intent?) {
-            setNotificationButtonState(isNotifyEnabled = true, isUpdateEnabled = false, isCancelEnabled = false)
-//            updateNotifcation()
-        }
-
-    }
 }
